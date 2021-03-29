@@ -74,3 +74,42 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+// Lecture 1
+
+let arr = ['a', 'b', 'c', 'd', 'e'];
+
+
+// Slice method
+console.log(arr.slice(2));
+console.log(arr.slice(2, 4)); // second value/index wont show in log
+console.log(arr.slice(-2)); // pulls from the end of the array
+console.log(arr.slice(1, -2));
+console.log(arr.slice());
+console.log([...arr]); // this does the same as the above
+
+// Splice method
+console.log(arr.splice(2)); // this alters original arr, deletes values extracted
+console.log(arr);
+arr.splice(-1); // this will delete the last element of array
+console.log(arr);
+
+arr = ['a', 'b', 'c', 'd', 'e'];
+const arr2 = ['j', 'i', 'h', 'g', 'f']
+
+console.log(arr);
+console.log(arr.splice(1, 2)); // splice 1st arg is starting index, 2nd arg is how many deletions from that point
+console.log(arr);
+
+// Reverse method
+console.log(arr2);
+console.log(arr2.reverse()); // reverse mutates the original array
+
+// Concat method
+arr = ['a', 'b', 'c', 'd', 'e']; // Concat does not mutate original array
+const letters = arr.concat(arr2); // this will add the 2 arrays together
+console.log(letters);
+console.log([...arr, ...arr2]); // this does the same thing as concat
+
+// Join method
+console.log(letters.join(' - ')); // creates a string of elements with chosen separator
