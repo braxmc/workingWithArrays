@@ -71,45 +71,76 @@ const currencies = new Map([
   ['GBP', 'Pound sterling'],
 ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
 // Lecture 1
 
-let arr = ['a', 'b', 'c', 'd', 'e'];
+// basic array methods
+
+// let arr = ['a', 'b', 'c', 'd', 'e'];
 
 
-// Slice method
-console.log(arr.slice(2));
-console.log(arr.slice(2, 4)); // second value/index wont show in log
-console.log(arr.slice(-2)); // pulls from the end of the array
-console.log(arr.slice(1, -2));
-console.log(arr.slice());
-console.log([...arr]); // this does the same as the above
+// // Slice method
+// console.log(arr.slice(2));
+// console.log(arr.slice(2, 4)); // second value/index wont show in log
+// console.log(arr.slice(-2)); // pulls from the end of the array
+// console.log(arr.slice(1, -2));
+// console.log(arr.slice());
+// console.log([...arr]); // this does the same as the above
 
-// Splice method
-console.log(arr.splice(2)); // this alters original arr, deletes values extracted
-console.log(arr);
-arr.splice(-1); // this will delete the last element of array
-console.log(arr);
+// // Splice method
+// console.log(arr.splice(2)); // this alters original arr, deletes values extracted
+// console.log(arr);
+// arr.splice(-1); // this will delete the last element of array
+// console.log(arr);
 
-arr = ['a', 'b', 'c', 'd', 'e'];
-const arr2 = ['j', 'i', 'h', 'g', 'f']
+// arr = ['a', 'b', 'c', 'd', 'e'];
+// const arr2 = ['j', 'i', 'h', 'g', 'f']
 
-console.log(arr);
-console.log(arr.splice(1, 2)); // splice 1st arg is starting index, 2nd arg is how many deletions from that point
-console.log(arr);
+// console.log(arr);
+// console.log(arr.splice(1, 2)); // splice 1st arg is starting index, 2nd arg is how many deletions from that point
+// console.log(arr);
 
-// Reverse method
-console.log(arr2);
-console.log(arr2.reverse()); // reverse mutates the original array
+// // Reverse method
+// console.log(arr2);
+// console.log(arr2.reverse()); // reverse mutates the original array
 
-// Concat method
-arr = ['a', 'b', 'c', 'd', 'e']; // Concat does not mutate original array
-const letters = arr.concat(arr2); // this will add the 2 arrays together
-console.log(letters);
-console.log([...arr, ...arr2]); // this does the same thing as concat
+// // Concat method
+// arr = ['a', 'b', 'c', 'd', 'e']; // Concat does not mutate original array
+// const letters = arr.concat(arr2); // this will add the 2 arrays together
+// console.log(letters);
+// console.log([...arr, ...arr2]); // this does the same thing as concat
 
-// Join method
-console.log(letters.join(' - ')); // creates a string of elements with chosen separator
+// // Join method
+// console.log(letters.join(' - ')); // creates a string of elements with chosen separator
+
+/////////////////////////////////////////////////
+
+// Lecture 2
+
+// looping arrays: forEach
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+for(const [i, movement] of movements.entries()) {
+  if(movement > 0) {
+    console.log(`Movement ${i + 1}: You deposited ${movement}`);
+  } else {
+    console.log(`Movement ${i + 1}: You withdrew ${Math.abs(movement)}`);
+  }
+}
+
+console.log('---------------forEach-------------------');
+
+// The order of forEach arguments must always be in order of current element, then index, and then entire array that we are looping over
+// forEach has no stopping/breaks it must loop over the entire array
+movements.forEach(function(mov, i, arr) {
+  if(mov > 0) {
+    console.log(`Movement ${i}: You deposited ${mov}`);
+  } else {
+    console.log(`Movement ${i}: You withdrew ${Math.abs(mov)}`);
+  }
+  console.log(arr); // this will show the entire array
+});
