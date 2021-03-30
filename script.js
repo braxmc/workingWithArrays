@@ -65,13 +65,13 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // LECTURES
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
@@ -122,25 +122,54 @@ const currencies = new Map([
 
 // looping arrays: forEach
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-for(const [i, movement] of movements.entries()) {
-  if(movement > 0) {
-    console.log(`Movement ${i + 1}: You deposited ${movement}`);
-  } else {
-    console.log(`Movement ${i + 1}: You withdrew ${Math.abs(movement)}`);
-  }
-}
+// for(const [i, movement] of movements.entries()) {
+//   if(movement > 0) {
+//     console.log(`Movement ${i + 1}: You deposited ${movement}`);
+//   } else {
+//     console.log(`Movement ${i + 1}: You withdrew ${Math.abs(movement)}`);
+//   }
+// }
 
-console.log('---------------forEach-------------------');
+// console.log('---------------forEach-------------------');
 
-// The order of forEach arguments must always be in order of current element, then index, and then entire array that we are looping over
-// forEach has no stopping/breaks it must loop over the entire array
-movements.forEach(function(mov, i, arr) {
-  if(mov > 0) {
-    console.log(`Movement ${i}: You deposited ${mov}`);
-  } else {
-    console.log(`Movement ${i}: You withdrew ${Math.abs(mov)}`);
-  }
-  console.log(arr); // this will show the entire array
+// // The order of forEach arguments must always be in order of current element, then index, and then entire array that we are looping over
+// // forEach has no stopping/breaks it must loop over the entire array
+// movements.forEach(function(mov, i, arr) {
+//   if(mov > 0) {
+//     console.log(`Movement ${i}: You deposited ${mov}`);
+//   } else {
+//     console.log(`Movement ${i}: You withdrew ${Math.abs(mov)}`);
+//   }
+//   console.log(arr); // this will show the entire array
+// });
+
+/////////////////////////////////////////////////
+
+// Lecture 2
+
+// looping set and maps: forEach
+
+
+// Map
+const currencies = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound sterling'],
+]);
+
+// has 3 arguements, value, key: key for value, map: entire map
+currencies.forEach(function(value, key, map) {
+  console.log(`${key}: ${value}`);
 });
+
+// Set
+const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
+console.log(currenciesUnique);
+
+// has 3 arguements, value, key: is the same as value, Set: entire set
+// using underscore as arguement is a throw away value
+currenciesUnique.forEach(function(value, _, set) {
+  console.log(`${key}: ${value}`);
+})
