@@ -192,3 +192,36 @@ displayMovements(account1.movements);
 // currenciesUnique.forEach(function(value, _, set) {
 //   console.log(`${_}: ${value}`);
 // })
+
+/////////////////////////////////////////////////
+
+// Lecture 2
+
+// Coding Challenge 1
+
+// test data 1
+let arr1 = [3, 5, 2, 12, 7];
+const arr2 = [4, 1, 15, 8, 3];
+
+// test data 2
+let arr3 = [9, 16, 6, 8, 3];
+const arr4 = [10, 5, 6, 1, 4];
+
+
+function checkDogs(arr1, arr2) {
+  arr1 = arr1.slice(1, -2);
+  const combinedArr = arr1.concat(arr2);
+  console.log(combinedArr);
+  combinedArr.forEach(function(value, index, _) {
+    const stage = value > 3 ? 'adult' : 'puppy';
+    if(value < 3) {
+      console.log(`Dog number ${index + 1} is an ${stage}, and is ${value} years old`);
+    } else {
+      console.log(`Dog number ${index + 1} is an ${stage}, and is ${value} years old`);
+    }
+  })
+};
+
+checkDogs(arr1, arr2);
+console.log('-------------------');
+checkDogs(arr3, arr4);
