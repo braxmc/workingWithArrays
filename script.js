@@ -199,29 +199,67 @@ displayMovements(account1.movements);
 
 // Coding Challenge 1
 
-// test data 1
-let arr1 = [3, 5, 2, 12, 7];
-const arr2 = [4, 1, 15, 8, 3];
+// // test data 1
+// let arr1 = [3, 5, 2, 12, 7];
+// const arr2 = [4, 1, 15, 8, 3];
 
-// test data 2
-let arr3 = [9, 16, 6, 8, 3];
-const arr4 = [10, 5, 6, 1, 4];
+// // test data 2
+// let arr3 = [9, 16, 6, 8, 3];
+// const arr4 = [10, 5, 6, 1, 4];
 
 
-function checkDogs(arr1, arr2) {
-  arr1 = arr1.slice(1, -2);
-  const combinedArr = arr1.concat(arr2);
-  console.log(combinedArr);
-  combinedArr.forEach(function(value, index, _) {
-    const stage = value > 3 ? 'adult' : 'puppy';
-    if(value < 3) {
-      console.log(`Dog number ${index + 1} is an ${stage}, and is ${value} years old`);
-    } else {
-      console.log(`Dog number ${index + 1} is an ${stage}, and is ${value} years old`);
-    }
-  })
-};
+// function checkDogs(arr1, arr2) {
+//   arr1 = arr1.slice(1, -2);
+//   const combinedArr = arr1.concat(arr2);
+//   console.log(combinedArr);
+//   combinedArr.forEach(function(value, index, _) {
+//     const stage = value > 3 ? 'adult' : 'puppy';
+//     if(value >= 3) {
+//       console.log(`Dog number ${index + 1} is an ${stage}, and is ${value} years old`);
+//     } else {
+//       console.log(`Dog number ${index + 1} is an ${stage}, and is ${value} years old`);
+//     }
+//   })
+// };
 
-checkDogs(arr1, arr2);
-console.log('-------------------');
-checkDogs(arr3, arr4);
+// checkDogs(arr1, arr2);
+// console.log('-------------------');
+// checkDogs(arr3, arr4);
+
+///////////////////////////////////////////
+
+// Lecture 2
+
+// Map method
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const eurToUsd = 1.1;
+
+const movementsUSD = movements.map(function(mov) {
+  return mov * eurToUsd;
+});
+
+const movementsUSDarrow = movements.map(mov => 
+  mov * eurToUsd
+  )
+
+console.log(movements);
+console.log(movementsUSD);
+console.log(movementsUSDarrow);
+
+const movementsUSDfor = [];
+for(const mov of movements) {
+  movementsUSDfor.push(mov * eurToUsd);
+}
+console.log(movementsUSDfor);
+
+const movementsDescription =movements.map((mov, i, arr) => {
+  if(mov > 0) {
+    return `Movement ${i + 1}: You deposited ${mov}`
+  } else {
+    return `Movement ${i + 1}: You withdrew ${Math.abs(mov)}`
+  }
+});
+
+console.log(movementsDescription);
