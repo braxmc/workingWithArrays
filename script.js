@@ -277,14 +277,14 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // //   return name[0]
 // // }).join('');
 
-// // ARROW FUNCTION
-// const createUsernames = function(accs) {
-//   accs.forEach(function(acc) {
-//     acc.username = acc.owner.toLowerCase().split(' ').map(name => name[0]).join('');
-//   })
-// }
+// ARROW FUNCTION
+const createUsernames = function(accs) {
+  accs.forEach(function(acc) {
+    acc.username = acc.owner.toLowerCase().split(' ').map(name => name[0]).join('');
+  })
+}
 
-// createUsernames(accounts)
+createUsernames(accounts)
 // console.log(accounts);
 
 ///////////////////////////////////////////
@@ -293,21 +293,69 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // Filter Method
 
-// has access to all 3 args but normally only use value arg
-const deposits = movements.filter(function(mov, index, arr) {
-  return mov > 0
-});
+// // has access to all 3 args but normally only use value arg
+// const deposits = movements.filter(function(mov, index, arr) {
+//   return mov > 0
+// });
 
-const depositFor = [];
-for(const dep of movements) {
-  if(dep > 0) {
-    depositFor.push(dep)
-  }
+// const depositFor = [];
+// for(const dep of movements) {
+//   if(dep > 0) {
+//     depositFor.push(dep)
+//   }
+// };
+
+// const withdrawals = movements.filter(mov => mov < 0);
+
+// console.log(movements);
+// console.log(deposits);
+// console.log(depositFor);
+// console.log(withdrawals);
+
+///////////////////////////////////////////
+
+// Lecture 5
+
+// Reduce Method
+
+// console.log(movements);
+
+
+// // accumulator -> SNOWBALL
+// const balance = movements.reduce(function(accumulator, current, index, arr) {
+//   console.log(`Iteration ${index}: ${accumulator}`);
+//   return accumulator + current
+// }, 0); // the 0 is the inital/starting value of the accumulator 
+
+// // let balanceFor = 0;
+// // for(const bal of movements) {
+// //   balanceFor += bal
+// // };
+// // console.log(balanceFor);
+
+// const balance2 = movements.reduce((acc, cur) => acc + cur, 0);
+
+// console.log(balance);
+// console.log(balance2);
+
+const calcDisplayBalance = function(movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance} EUR`;
 };
 
-const withdrawals = movements.filter(mov => mov < 0);
+calcDisplayBalance(account1.movements);
 
-console.log(movements);
-console.log(deposits);
-console.log(depositFor);
-console.log(withdrawals);
+// Maximum value of arr
+const max = movements.reduce((acc, mov) => {
+  if(acc > mov) {
+    return acc;
+  } else {
+    return mov;
+  }
+}, movements[0]);
+
+console.log(max);
+
+// Minimum value of arr
+const min = movements.reduce((acc, mov) => acc < mov ? acc : mov);
+console.log(min);
