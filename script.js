@@ -90,7 +90,7 @@ displayMovements(account1.movements);
 //   ['GBP', 'Pound sterling'],
 // ]);
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
@@ -270,19 +270,44 @@ displayMovements(account1.movements);
 
 // Computing Usernames
 
-const user = 'Braxton Douglas McClellan';
+// const user = 'Braxton Douglas McClellan';
 
-// REGULAR FUNCTION
-// const username = user.toLowerCase().split(' ').map(function(name) {
-//   return name[0]
-// }).join('');
+// // REGULAR FUNCTION
+// // const username = user.toLowerCase().split(' ').map(function(name) {
+// //   return name[0]
+// // }).join('');
 
-// ARROW FUNCTION
-const createUsernames = function(accs) {
-  accs.forEach(function(acc) {
-    acc.username = acc.owner.toLowerCase().split(' ').map(name => name[0]).join('');
-  })
-}
+// // ARROW FUNCTION
+// const createUsernames = function(accs) {
+//   accs.forEach(function(acc) {
+//     acc.username = acc.owner.toLowerCase().split(' ').map(name => name[0]).join('');
+//   })
+// }
 
-createUsernames(accounts)
-console.log(accounts);
+// createUsernames(accounts)
+// console.log(accounts);
+
+///////////////////////////////////////////
+
+// Lecture 4
+
+// Filter Method
+
+// has access to all 3 args but normally only use value arg
+const deposits = movements.filter(function(mov, index, arr) {
+  return mov > 0
+});
+
+const depositFor = [];
+for(const dep of movements) {
+  if(dep > 0) {
+    depositFor.push(dep)
+  }
+};
+
+const withdrawals = movements.filter(mov => mov < 0);
+
+console.log(movements);
+console.log(deposits);
+console.log(depositFor);
+console.log(withdrawals);
