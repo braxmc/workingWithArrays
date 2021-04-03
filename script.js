@@ -166,7 +166,7 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
-// Lecture 2
+// Lecture 3
 
 // looping set and maps: forEach
 
@@ -195,7 +195,7 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
-// Lecture 2
+// Lecture 4
 
 // Coding Challenge 1
 
@@ -228,7 +228,7 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 ///////////////////////////////////////////
 
-// Lecture 2
+// Lecture 5
 
 // Map method
 
@@ -266,7 +266,7 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 ///////////////////////////////////////////
 
-// Lecture 3
+// Lecture 6
 
 // Computing Usernames
 
@@ -289,7 +289,7 @@ createUsernames(accounts)
 
 ///////////////////////////////////////////
 
-// Lecture 4
+// Lecture 7
 
 // Filter Method
 
@@ -343,19 +343,78 @@ const calcDisplayBalance = function(movements) {
   labelBalance.textContent = `${balance} EUR`;
 };
 
-calcDisplayBalance(account1.movements);
+// calcDisplayBalance(account1.movements);
 
-// Maximum value of arr
-const max = movements.reduce((acc, mov) => {
-  if(acc > mov) {
-    return acc;
-  } else {
-    return mov;
-  }
-}, movements[0]);
+// console.log(movements);
 
-console.log(max);
+// // Maximum value of arr
+// const max = movements.reduce((acc, mov) => {
+//   if(acc > mov) {
+//     return acc;
+//   } else {
+//     return mov;
+//   }
+// }, movements[0]);
+// console.log(max);
 
-// Minimum value of arr
-const min = movements.reduce((acc, mov) => acc < mov ? acc : mov);
-console.log(min);
+// // Minimum value of arr
+// const min = movements.reduce((acc, mov) => acc < mov ? acc : mov);
+// console.log(min);
+
+/////////////////////////////////////////////////
+
+// Lecture 8
+
+// Coding Challenge 1
+
+// using regular functions
+
+const ages = [5, 2, 4, 1, 15, 8, 3];
+
+const ages2 = [16, 6, 10, 5, 6, 1, 4];
+
+const calcAverageHumanAge = function(ages) {
+
+  const humanAges = ages.map(function(age) {
+    if(age <= 2) {
+      return age * 2
+    } else {
+      return 16 + age * 4
+    }
+  });
+  console.log(humanAges);
+
+  const adults = humanAges.filter(function(age) {
+    return age >= 18
+  });
+  console.log(adults);
+
+  const averageAge = adults.reduce(function(acc, age) {
+    return acc + age / adults.length
+  }, 0);
+  console.log(averageAge);
+}
+
+calcAverageHumanAge(ages);
+calcAverageHumanAge(ages2);
+
+// using arrow functions
+
+const ages3 = [5, 2, 4, 1, 15, 8, 3];
+
+const ages4 = [16, 6, 10, 5, 6, 1, 4];
+
+const calcAverageHumanAge1 = function (ages) {
+
+  const humanAges = ages.map(age => age <= 2 ? age * 2 : 16 + age * 4);
+  console.log(humanAges);
+
+  const adults = humanAges.filter(age => age >= 18);
+  console.log(adults);
+
+  const averageAge = adults.reduce((acc, age) => acc + age, 0) / adults.length;
+  console.log(averageAge);
+}
+
+calcAverageHumanAge1(ages3);
+calcAverageHumanAge1(ages4);
