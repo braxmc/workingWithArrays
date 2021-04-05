@@ -369,52 +369,77 @@ const calcDisplayBalance = function(movements) {
 
 // using regular functions
 
-const ages = [5, 2, 4, 1, 15, 8, 3];
+// const ages = [5, 2, 4, 1, 15, 8, 3];
 
-const ages2 = [16, 6, 10, 5, 6, 1, 4];
+// const ages2 = [16, 6, 10, 5, 6, 1, 4];
 
-const calcAverageHumanAge = function(ages) {
+// const calcAverageHumanAge = function(ages) {
 
-  const humanAges = ages.map(function(age) {
-    if(age <= 2) {
-      return age * 2
-    } else {
-      return 16 + age * 4
-    }
-  });
-  console.log(humanAges);
+//   const humanAges = ages.map(function(age) {
+//     if(age <= 2) {
+//       return age * 2
+//     } else {
+//       return 16 + age * 4
+//     }
+//   });
+//   console.log(humanAges);
 
-  const adults = humanAges.filter(function(age) {
-    return age >= 18
-  });
-  console.log(adults);
+//   const adults = humanAges.filter(function(age) {
+//     return age >= 18
+//   });
+//   console.log(adults);
 
-  const averageAge = adults.reduce(function(acc, age) {
-    return acc + age / adults.length
-  }, 0);
-  console.log(averageAge);
+//   const averageAge = adults.reduce(function(acc, age) {
+//     return acc + age / adults.length
+//   }, 0);
+//   console.log(averageAge);
+// }
+
+// calcAverageHumanAge(ages);
+// calcAverageHumanAge(ages2);
+
+// // using arrow functions
+
+// const ages3 = [5, 2, 4, 1, 15, 8, 3];
+
+// const ages4 = [16, 6, 10, 5, 6, 1, 4];
+
+// const calcAverageHumanAge1 = function (ages) {
+
+//   const humanAges = ages.map(age => age <= 2 ? age * 2 : 16 + age * 4);
+//   console.log(humanAges);
+
+//   const adults = humanAges.filter(age => age >= 18);
+//   console.log(adults);
+
+//   const averageAge = adults.reduce((acc, age) => acc + age, 0) / adults.length;
+//   console.log(averageAge);
+// }
+
+// calcAverageHumanAge1(ages3);
+// calcAverageHumanAge1(ages4);
+
+/////////////////////////////////////////////////
+
+// Lecture 9
+
+// The magic of chaining methods
+
+const eurToUsd = 1.1;
+const totalDepositsUSD = movements.filter(mov => mov > 0).map(mov => mov * eurToUsd).reduce((acc, mov) => acc + mov, 0);
+console.log(totalDepositsUSD);
+
+const calcDisplaySummary = function(movements) {
+  const incomes = movements.filter(mov => mov > 0).reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes}€`;
+
+  const out = movements.filter(mov => mov < 0).reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${Math.abs(out)}€`;
+
+  const interest = movements.filter(mov => mov > 0).map(deposit => deposit * 1.2/100).filter((int, i, arr) => {
+    console.log(arr);
+    return int >= 1;
+  }).reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = `${interest}€`;
 }
-
-calcAverageHumanAge(ages);
-calcAverageHumanAge(ages2);
-
-// using arrow functions
-
-const ages3 = [5, 2, 4, 1, 15, 8, 3];
-
-const ages4 = [16, 6, 10, 5, 6, 1, 4];
-
-const calcAverageHumanAge1 = function (ages) {
-
-  const humanAges = ages.map(age => age <= 2 ? age * 2 : 16 + age * 4);
-  console.log(humanAges);
-
-  const adults = humanAges.filter(age => age >= 18);
-  console.log(adults);
-
-  const averageAge = adults.reduce((acc, age) => acc + age, 0) / adults.length;
-  console.log(averageAge);
-}
-
-calcAverageHumanAge1(ages3);
-calcAverageHumanAge1(ages4);
+calcDisplaySummary(account1.movements);
