@@ -450,19 +450,45 @@ const calcDisplayBalance = function(movements) {
 
 // Coding Challenge 23
 
-// using arrow functions
+// using arrow functions and chaining
 
-const ages = [5, 2, 4, 1, 15, 8, 3];
+// const ages = [5, 2, 4, 1, 15, 8, 3];
 
-const ages2 = [16, 6, 10, 5, 6, 1, 4];
+// const ages2 = [16, 6, 10, 5, 6, 1, 4];
 
-const calcAverageHumanAge = ages => 
-  ages
-    .map(age => (age <= 2 ? age * 2 : 16 + age * 4))
-    .filter(age => age >= 18)
-    .reduce((acc, age, i, arr) => acc + age / arr.length, 0);
+// const calcAverageHumanAge = ages => 
+//   ages
+//     .map(age => (age <= 2 ? age * 2 : 16 + age * 4))
+//     .filter(age => age >= 18)
+//     .reduce((acc, age, i, arr) => acc + age / arr.length, 0);
 
-const avg1 = calcAverageHumanAge(ages);
-const avg2 = calcAverageHumanAge(ages2)
+// const avg1 = calcAverageHumanAge(ages);
+// const avg2 = calcAverageHumanAge(ages2)
 
-console.log(avg1, avg2);
+// console.log(avg1, avg2);
+
+/////////////////////////////////////////////////
+
+// Lecture 10
+
+// Find Method
+
+// will only return first value that meets requirements
+const firstWithdrawal = movements.find(mov => mov < 0);
+
+console.log(movements);
+console.log(firstWithdrawal);
+
+console.log(accounts);
+
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+console.log(account);
+
+// getting same result with For Of loop
+let accountFor = '';
+for(const acc of accounts) {
+  if(acc.owner === 'Jessica Davis') {
+   accountFor = acc
+  }
+}
+console.log(accountFor);
