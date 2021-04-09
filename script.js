@@ -155,7 +155,21 @@ btnTransfer.addEventListener('click', function(e) {
     updateUI(currentAccount);
   }
   
+});
 
+btnClose.addEventListener('click', function(e) {
+  e.preventDefault();
+  
+  if(inputCloseUsername.value === currentAccount.username && Number(inputClosePin.value) === Number(currentAccount.pin)) {
+    const index = accounts.findIndex(acc => acc.username === currentAccount.username)
+    
+    // Delete Acc
+    accounts.splice(index, 1);
+  
+    // Hide UI
+    containerApp.style.opacity = 0;
+  }
+  inputCloseUsername.value = inputClosePin.value = '';
 });
 
 /////////////////////////////////////////////////
@@ -611,3 +625,40 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // Lecture 12
 
 // Implementing transfers
+
+// btnTransfer.addEventListener('click', function(e) {
+//   e.preventDefault();
+
+//   const amount = Number(inputTransferAmount.value);
+//   const recieverAcc = accounts.find(acc => acc.username === inputTransferTo.value);
+//   inputTransferAmount.value = inputTransferTo.value = '';
+
+//   if(amount > 0 && recieverAcc && currentAccount.balance >= amount && recieverAcc?.username !== currentAccount.username) {
+//     currentAccount.movements.push(-amount);
+//     recieverAcc.movements.push(amount);
+//     updateUI(currentAccount);
+//   }
+  
+
+// });
+
+/////////////////////////////////////////////////
+
+// Lecture 13
+
+// findIndex method
+
+// btnClose.addEventListener('click', function(e) {
+//   e.preventDefault();
+  
+//   if(inputCloseUsername.value === currentAccount.username && Number(inputClosePin.value) === Number(currentAccount.pin)) {
+//     const index = accounts.findIndex(acc => acc.username === currentAccount.username)
+    
+//     // Delete Acc
+//     accounts.splice(index, 1);
+  
+//     // Hide UI
+//     containerApp.style.opacity = 0;
+//   }
+//   inputCloseUsername.value = inputClosePin.value = '';
+// });
