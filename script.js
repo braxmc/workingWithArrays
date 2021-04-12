@@ -63,10 +63,12 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 /////////////////////////////////////////////////
 
-const displayMovements = function(movements) {
+const displayMovements = function(movements, sort = false) {
   containerMovements.innerHTML = '';
 
-  movements.forEach(function(mov, i) {
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  movs.forEach(function(mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const html = `
@@ -186,6 +188,13 @@ btnClose.addEventListener('click', function(e) {
   }
   inputCloseUsername.value = inputClosePin.value = '';
 });
+
+let sorted = false;
+btnSort.addEventListener('click', function(e) {
+  e.preventDefault;
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
+})
 
 /////////////////////////////////////////////////
 // LECTURES
@@ -716,23 +725,76 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // Flat and FlatMap
 
-const arr = [[1, 2, 3], [4, 5, 6], 78];
-console.log(arr.flay());
+// const arr = [[1, 2, 3], [4, 5, 6], 78];
+// console.log(arr.flat());
 
-const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
-console.log(arrDeep.flat(2));
+// const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+// console.log(arrDeep.flat(2));
 
-const accountMovements = accounts.map(acc => acc.movements);
-console.log(accountMovements);
+// const accountMovements = accounts.map(acc => acc.movements);
+// console.log(accountMovements);
 
-const allMovements = accountMovements.flat();
-console.log(allMovements);
+// const allMovements = accountMovements.flat();
+// console.log(allMovements);
 
-const overallBalance = allMovements.reduce((acc, mov) => acc + mov, 0);
-console.log(overallBalance);
+// const overallBalance = allMovements.reduce((acc, mov) => acc + mov, 0);
+// console.log(overallBalance);
 
 // this is the same as above with chaining
-const overallBalance = 
-accounts.flatMap(acc => acc.movements)
-.reduce((acc, mov) => acc + mov, 0);
-console.log(overallBalance);
+// const overallBalance = 
+// accounts.flatMap(acc => acc.movements)
+// .reduce((acc, mov) => acc + mov, 0);
+// console.log(overallBalance);
+
+/////////////////////////////////////////////////
+
+// Lecture 15
+
+// Sorting Arrays
+
+// Strings
+const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
+console.log(owners);
+console.log(owners.sort());
+console.log(owners);
+
+// Numbers
+// console.log(movements);
+// console.log(movements.sort());
+// [-130, -400, -650, 1300, 200, 3000, 450, 70] this is the result
+// does them like strings first the - then the number
+
+console.log(movements);
+
+// return < 0 ... A, B (keep order)
+// return > 0 ... B, A (switch order)
+
+// Ascending
+// movements.sort((a, b) => {
+//   if(a > b) {
+//     return 1;
+//   }
+//   if(b > a) {
+//     return -1;
+//   }
+// });
+
+// same thing as above but improved
+// movements.sort((a, b) => a - b)
+
+// console.log('ascending', movements);
+
+// Descending 
+// movements.sort((a, b) => {
+//   if(a > b) {
+//     return -1;
+//   }
+//   if(b > a) {
+//     return 1;
+//   }
+// });
+
+// same thing as above but improved
+// movements.sort((a, b) => b - a)
+
+// console.log('descending', movements);
