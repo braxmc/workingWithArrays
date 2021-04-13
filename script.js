@@ -805,43 +805,100 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // Creating and Filling arrays
 
-console.log([1, 2, 3, 4, 5, 6, 7]);
-console.log(new Array(1, 2, 3, 4, 5, 6, 7));
+// console.log([1, 2, 3, 4, 5, 6, 7]);
+// console.log(new Array(1, 2, 3, 4, 5, 6, 7));
 
-// Empty arrays + fill method
-const x = new Array(7); // with only 1 arg is creates empty array w/length of 7
-console.log(x); 
+// // Empty arrays + fill method
+// const x = new Array(7); // with only 1 arg is creates empty array w/length of 7
+// console.log(x); 
 
-x.fill(4); // fills entire array with single value
-console.log(x);
+// x.fill(4); // fills entire array with single value
+// console.log(x);
 
-x.fill(1, 3); // second arg is where it starts filling from ie: index 3-7
-console.log(x);
+// x.fill(1, 3); // second arg is where it starts filling from ie: index 3-7
+// console.log(x);
 
-x.fill(2, 0, 3); // second arg is where it stops, third is where it ends
-console.log(x);
+// x.fill(2, 0, 3); // second arg is where it stops, third is where it ends
+// console.log(x);
 
-// --- Array.from ----
+// // --- Array.from ----
 
-// Doesn't create an empty array
-const y = Array.from({length: 7}, () => 1);
-console.log(y);
+// // Doesn't create an empty array
+// const y = Array.from({length: 7}, () => 1);
+// console.log(y);
 
-// can use _ instead of 'cur'
-const z = Array.from({length: 7}, (_, i) => i + 1);
-console.log(z);
+// // can use _ instead of 'cur'
+// const z = Array.from({length: 7}, (_, i) => i + 1);
+// console.log(z);
 
-// mini challange, 100 random dice rolls
-const diceRolls = Array.from({length: 100}, (_, i) => i = Math.trunc(Math.random() * 6) + 1);
-console.log(diceRolls);
+// // mini challange, 100 random dice rolls
+// const diceRolls = Array.from({length: 100}, (_, i) => i = Math.trunc(Math.random() * 6) + 1);
+// console.log(diceRolls);
 
-labelBalance.addEventListener('click', function() {
-  const movementsUI = Array.from(
-    document.querySelectorAll('.movements__value'),
-    el => Number(el.textContent.replace('€', '')))
+// labelBalance.addEventListener('click', function() {
+//   const movementsUI = Array.from(
+//     document.querySelectorAll('.movements__value'),
+//     el => Number(el.textContent.replace('€', '')))
 
-  // gets values of the .movements
-  // console.log(movementsUI.map(el => el.textContent.replace('€', '')));
-  console.log(movementsUI);
-});
+//   // gets values of the .movements
+//   // console.log(movementsUI.map(el => el.textContent.replace('€', '')));
+//   console.log(movementsUI);
+// });
+
+/////////////////////////////////////////////////
+
+// Lecture 17
+
+// Which array methods to use
+
+// METHODS THAT MUTATE ORIGINAL ARRAY
+
+  // add to original
+  .push (adds to end)
+  .unshift (adds to beginning)
+
+  // remove from original
+  .pop (removes from end)
+  .shift (removes from beginning)
+  .splice (removes any)
+
+  // others
+  .reverse
+  .sort
+  .fill
+
+// METHODS THAT MUTATE NEW ARRAY
+  .map (loop)
+
+  .filter
+  
+  .slice
+
+  .concat
+
+  .flat
+  .flatMap
+
+// AN ARRAY INDEX
+  .indexOf
+
+  .findIndex
+
+// AN ARRAY ELEMENT
+  .find
+
+// KNOW IF ARRAY INCLUDES
+  .includes
+
+  .some
+  .every
+
+// A NEW STRING
+  .join
+
+// TO TRANSFORM TO VALUE
+  .reduce // boil down array to a single value of any type: number, string, boolean, or even a new array or object
+
+//  TO JUST LOOP ARRAY
+  .forEach // does not create new array just loops over existing
 
