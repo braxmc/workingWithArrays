@@ -95,7 +95,7 @@ const calcDisplaySummary = function(acc) {
   labelSumOut.textContent = `${Math.abs(out)}€`;
 
   const interest = acc.movements.filter(mov => mov > 0).map(deposit => (deposit * acc.interestRate) / 100).filter((int, i, arr) => {
-    console.log(arr);
+    // console.log(arr);
     return int >= 1;
   }).reduce((acc, int) => acc + int, 0);
   labelSumInterest.textContent = `${interest}€`;
@@ -753,10 +753,10 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // Sorting Arrays
 
 // Strings
-const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
-console.log(owners);
-console.log(owners.sort());
-console.log(owners);
+// const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
+// console.log(owners);
+// console.log(owners.sort());
+// console.log(owners);
 
 // Numbers
 // console.log(movements);
@@ -764,7 +764,7 @@ console.log(owners);
 // [-130, -400, -650, 1300, 200, 3000, 450, 70] this is the result
 // does them like strings first the - then the number
 
-console.log(movements);
+// console.log(movements);
 
 // return < 0 ... A, B (keep order)
 // return > 0 ... B, A (switch order)
@@ -798,3 +798,50 @@ console.log(movements);
 // movements.sort((a, b) => b - a)
 
 // console.log('descending', movements);
+
+/////////////////////////////////////////////////
+
+// Lecture 16
+
+// Creating and Filling arrays
+
+console.log([1, 2, 3, 4, 5, 6, 7]);
+console.log(new Array(1, 2, 3, 4, 5, 6, 7));
+
+// Empty arrays + fill method
+const x = new Array(7); // with only 1 arg is creates empty array w/length of 7
+console.log(x); 
+
+x.fill(4); // fills entire array with single value
+console.log(x);
+
+x.fill(1, 3); // second arg is where it starts filling from ie: index 3-7
+console.log(x);
+
+x.fill(2, 0, 3); // second arg is where it stops, third is where it ends
+console.log(x);
+
+// --- Array.from ----
+
+// Doesn't create an empty array
+const y = Array.from({length: 7}, () => 1);
+console.log(y);
+
+// can use _ instead of 'cur'
+const z = Array.from({length: 7}, (_, i) => i + 1);
+console.log(z);
+
+// mini challange, 100 random dice rolls
+const diceRolls = Array.from({length: 100}, (_, i) => i = Math.trunc(Math.random() * 6) + 1);
+console.log(diceRolls);
+
+labelBalance.addEventListener('click', function() {
+  const movementsUI = Array.from(
+    document.querySelectorAll('.movements__value'),
+    el => Number(el.textContent.replace('€', '')))
+
+  // gets values of the .movements
+  // console.log(movementsUI.map(el => el.textContent.replace('€', '')));
+  console.log(movementsUI);
+});
+
