@@ -851,54 +851,119 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // Which array methods to use
 
-// METHODS THAT MUTATE ORIGINAL ARRAY
+// // METHODS THAT MUTATE ORIGINAL ARRAY
 
-  // add to original
-  .push (adds to end)
-  .unshift (adds to beginning)
+//   // add to original
+//   .push (adds to end)
+//   .unshift (adds to beginning)
 
-  // remove from original
-  .pop (removes from end)
-  .shift (removes from beginning)
-  .splice (removes any)
+//   // remove from original
+//   .pop (removes from end)
+//   .shift (removes from beginning)
+//   .splice (removes any)
 
-  // others
-  .reverse
-  .sort
-  .fill
+//   // others
+//   .reverse
+//   .sort
+//   .fill
 
-// METHODS THAT MUTATE NEW ARRAY
-  .map (loop)
+// // METHODS THAT MUTATE NEW ARRAY
+//   .map (loop)
 
-  .filter
+//   .filter
   
-  .slice
+//   .slice
 
-  .concat
+//   .concat
 
-  .flat
-  .flatMap
+//   .flat
+//   .flatMap
 
-// AN ARRAY INDEX
-  .indexOf
+// // AN ARRAY INDEX
+//   .indexOf
 
-  .findIndex
+//   .findIndex
 
-// AN ARRAY ELEMENT
-  .find
+// // AN ARRAY ELEMENT
+//   .find
 
-// KNOW IF ARRAY INCLUDES
-  .includes
+// // KNOW IF ARRAY INCLUDES
+//   .includes
 
-  .some
-  .every
+//   .some
+//   .every
 
-// A NEW STRING
-  .join
+// // A NEW STRING
+//   .join
 
-// TO TRANSFORM TO VALUE
-  .reduce // boil down array to a single value of any type: number, string, boolean, or even a new array or object
+// // TO TRANSFORM TO VALUE
+//   .reduce // boil down array to a single value of any type: number, string, boolean, or even a new array or object
 
-//  TO JUST LOOP ARRAY
-  .forEach // does not create new array just loops over existing
+// //  TO JUST LOOP ARRAY
+//   .forEach // does not create new array just loops over existing
 
+/////////////////////////////////////////////////
+
+// Lecture 18
+
+// Array Method Practice
+
+// 1.
+const bankDepositSum = accounts.flatMap(acc => acc.movements)
+  .filter(mov => mov > 0)
+  .reduce((acc, num) => acc + num, 0);
+
+console.log(bankDepositSum);
+
+// 2.
+// different ways to find length of array with params
+const numDeposits1000 = accounts.flatMap(acc => acc.movements)
+  .filter(mov => mov >= 1000).length;
+
+console.log(numDeposits1000);
+
+const numDeposits1000Two = accounts.flatMap(acc => acc.movements)
+  .reduce((count, num) => num >= 1000 ? count + 1 : count ,0);
+
+console.log(numDeposits1000Two);
+
+// -------
+let a = 10;
+console.log(a++); // returns old value
+console.log(a); // shows incremented/updated value
+
+// 3.
+const {deposits, withdrawals} = accounts.flatMap(acc => acc.movements)
+  .reduce((sums, cur) => {
+    cur > 0 ? (sums.deposits += cur) : (sums.withdrawals += cur);
+    return sums;
+  }, {deposits: 0, withdrawals: 0});
+
+console.log(deposits, withdrawals);
+
+// another way to do it
+const {deposit, withdrawal} = accounts.flatMap(acc => acc.movements)
+  .reduce((sums, cur) => {
+    sums[cur > 0 ? 'deposit' : 'withdrawal'] += cur;
+    return sums;
+  }, {deposit: 0, withdrawal: 0});
+
+  console.log(deposit, withdrawal);
+
+// 4.
+// Ex: this is a nice title --> This Is a Nice Title
+const convertTitleCase = function(title) {
+  const capitalize = str => str[0].toUpperCase() + str.slice(1);
+
+  const exceptions = ['a', 'an', 'the', 'but', 'or', 'on', 'in', 'with', 'and'];
+
+  const titleCase = title.toLowerCase().split(' ')
+    .map(word => exceptions.includes(word) ? word : word[0]
+    .toUpperCase() + word.slice(1))
+    .join(' ')
+  return capitalize(titleCase);
+};
+console.log(convertTitleCase('this is a nice title'));
+console.log(convertTitleCase('this is a LONG title but not too long'));
+console.log(convertTitleCase('this is another TITLE with an EXAMPLE'));
+console.log(convertTitleCase('And this is another TITLE with an EXAMPLE'));
