@@ -908,62 +908,96 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // Array Method Practice
 
-// 1.
-const bankDepositSum = accounts.flatMap(acc => acc.movements)
-  .filter(mov => mov > 0)
-  .reduce((acc, num) => acc + num, 0);
+// // 1.
+// const bankDepositSum = accounts.flatMap(acc => acc.movements)
+//   .filter(mov => mov > 0)
+//   .reduce((acc, num) => acc + num, 0);
 
-console.log(bankDepositSum);
+// console.log(bankDepositSum);
+
+// // 2.
+// // different ways to find length of array with params
+// const numDeposits1000 = accounts.flatMap(acc => acc.movements)
+//   .filter(mov => mov >= 1000).length;
+
+// console.log(numDeposits1000);
+
+// const numDeposits1000Two = accounts.flatMap(acc => acc.movements)
+//   .reduce((count, num) => num >= 1000 ? count + 1 : count ,0);
+
+// console.log(numDeposits1000Two);
+
+// // -------
+// let a = 10;
+// console.log(a++); // returns old value
+// console.log(a); // shows incremented/updated value
+
+// // 3.
+// const {deposits, withdrawals} = accounts.flatMap(acc => acc.movements)
+//   .reduce((sums, cur) => {
+//     cur > 0 ? (sums.deposits += cur) : (sums.withdrawals += cur);
+//     return sums;
+//   }, {deposits: 0, withdrawals: 0});
+
+// console.log(deposits, withdrawals);
+
+// // another way to do it
+// const {deposit, withdrawal} = accounts.flatMap(acc => acc.movements)
+//   .reduce((sums, cur) => {
+//     sums[cur > 0 ? 'deposit' : 'withdrawal'] += cur;
+//     return sums;
+//   }, {deposit: 0, withdrawal: 0});
+
+//   console.log(deposit, withdrawal);
+
+// // 4.
+// // Ex: this is a nice title --> This Is a Nice Title
+// const convertTitleCase = function(title) {
+//   const capitalize = str => str[0].toUpperCase() + str.slice(1);
+
+//   const exceptions = ['a', 'an', 'the', 'but', 'or', 'on', 'in', 'with', 'and'];
+
+//   const titleCase = title.toLowerCase().split(' ')
+//     .map(word => exceptions.includes(word) ? word : word[0]
+//     .toUpperCase() + word.slice(1))
+//     .join(' ')
+//   return capitalize(titleCase);
+// };
+// console.log(convertTitleCase('this is a nice title'));
+// console.log(convertTitleCase('this is a LONG title but not too long'));
+// console.log(convertTitleCase('this is another TITLE with an EXAMPLE'));
+// console.log(convertTitleCase('And this is another TITLE with an EXAMPLE'));
+
+/////////////////////////////////////////////////
+
+// Lecture 19
+
+// Challenge 4
+
+// Test DATA
+const dogs = [
+  { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
+  { weight: 8, curFood: 200, owners: ['Matilda'] },
+  { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
+  { weight: 32, curFood: 340, owners: ['Michael'] }
+];
+
+// 1.
+dogs.forEach(dog => (dog.recFood = Math.trunc(dog.weight ** 0.75 * 28)));
+console.log(dogs);
 
 // 2.
-// different ways to find length of array with params
-const numDeposits1000 = accounts.flatMap(acc => acc.movements)
-  .filter(mov => mov >= 1000).length;
-
-console.log(numDeposits1000);
-
-const numDeposits1000Two = accounts.flatMap(acc => acc.movements)
-  .reduce((count, num) => num >= 1000 ? count + 1 : count ,0);
-
-console.log(numDeposits1000Two);
-
-// -------
-let a = 10;
-console.log(a++); // returns old value
-console.log(a); // shows incremented/updated value
+const dogSarah = dogs.find(dog => dog.owners.includes('Sarah'));
+console.log(dogSarah);
+console.log(`Sarah's dog is eathing too ${dogSarah.curFood > dogSarah.recFood}` ? 'much' : 'little');
 
 // 3.
-const {deposits, withdrawals} = accounts.flatMap(acc => acc.movements)
-  .reduce((sums, cur) => {
-    cur > 0 ? (sums.deposits += cur) : (sums.withdrawals += cur);
-    return sums;
-  }, {deposits: 0, withdrawals: 0});
+const ownersEatTooMuch =  dogs.filter(dog => dog.curFood > dog.recFood)
+  .flatMap(dog => dog.owners);
+console.log(ownersEatTooMuch);
 
-console.log(deposits, withdrawals);
-
-// another way to do it
-const {deposit, withdrawal} = accounts.flatMap(acc => acc.movements)
-  .reduce((sums, cur) => {
-    sums[cur > 0 ? 'deposit' : 'withdrawal'] += cur;
-    return sums;
-  }, {deposit: 0, withdrawal: 0});
-
-  console.log(deposit, withdrawal);
+const ownersEatTooLittle =  dogs.filter(dog => dog.curFood < dog.recFood)
+  .flatMap(dog => dog.owners);
+  console.log(ownersEatTooLittle);
 
 // 4.
-// Ex: this is a nice title --> This Is a Nice Title
-const convertTitleCase = function(title) {
-  const capitalize = str => str[0].toUpperCase() + str.slice(1);
-
-  const exceptions = ['a', 'an', 'the', 'but', 'or', 'on', 'in', 'with', 'and'];
-
-  const titleCase = title.toLowerCase().split(' ')
-    .map(word => exceptions.includes(word) ? word : word[0]
-    .toUpperCase() + word.slice(1))
-    .join(' ')
-  return capitalize(titleCase);
-};
-console.log(convertTitleCase('this is a nice title'));
-console.log(convertTitleCase('this is a LONG title but not too long'));
-console.log(convertTitleCase('this is another TITLE with an EXAMPLE'));
-console.log(convertTitleCase('And this is another TITLE with an EXAMPLE'));
