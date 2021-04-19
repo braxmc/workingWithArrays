@@ -1001,3 +1001,24 @@ const ownersEatTooLittle =  dogs.filter(dog => dog.curFood < dog.recFood)
   console.log(ownersEatTooLittle);
 
 // 4.
+console.log(`${ownersEatTooMuch.join(' and ')}'s dogs eat too much`);
+console.log(`${ownersEatTooLittle.join(' and ')}'s dogs eat too much`);
+
+// 5.
+console.log(dogs.some(dog => dog.curFood === dog.recFood));
+
+// 6.
+// current > (recommended * 0.90) && current < (recommended * 1.10)
+console.log(dogs.some(
+  dog => dog.curFood > dog.recFood * 0.9 && dog.curFood < dog.recFood * 1.10
+));
+
+// 7.
+const checkEatingOkay = dog => dog.curFood > dog.recFood * 0.9 && dog.curFood < dog.recFood * 1.10;
+
+console.log(dogs.filter(checkEatingOkay));
+
+// 8.
+const dogsCopy = dogs.slice().sort((a, b) => a.recFood - b.recFood)
+
+console.log(dogsCopy);
